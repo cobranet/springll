@@ -1,0 +1,14 @@
+ll/models/Player.class
+ll/repositories/GameProposalRepo.class
+ll/services/GameProposalService.class
+ll/repositories/PlayerRepo.class
+ll/controllers/ExceptionResponse.class
+ll/models/Game.class
+ll/controllers/PlayerController.class
+ll/controllers/GameProposalController.class
+ll/models/GameRecord.class
+ll/models/GameProposal.class
+ll/models/GameForPlayer.class
+ll/controllers/HelloController.class
+ll/models/Card.class
+ll/Application.class

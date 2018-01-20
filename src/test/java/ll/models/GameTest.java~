@@ -1,0 +1,100 @@
+package ll.test.models;
+
+import org.junit.Test;
+import org.springframework.boot.test.autoconfigure.orm.jpa.*;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import static org.assertj.core.api.Assertions.*;
+import ll.models.Player;
+import ll.models.Game;
+import ll.models.GameForPlayer;
+
+/*
+update player set url = 'http://www.lte-esafety.co.uk/wp-content/uploads/2015/06/avatar.png' , name = 'Marija Petrovic'
+where id= '2'
+
+update player set url = 'https://pickaface.net/gallery/avatar/myspacedixson5247bbe83039a.png' , name = 'Pano Petrovic'
+where id= '3'
+*/
+
+@RunWith(SpringRunner.class)
+public class GameTest {
+    
+    Player p0 = new Player("1234","Bratislav Petrovic", "https://scontent.xx.fbcdn.net/v/t1.0-1/c12.12.155.155/s50x50/215243_1887081010100_2998764_n.jpg?oh=cb76dd26bd7de7704a89d9f815115479&oe=5AE93312");
+    Player p1 = new Player("1235","Marija Petrovic", "http://www.lte-esafety.co.uk/wp-content/uploads/2015/06/avatar.png");
+    Player p2 = new Player("1236","Marija Petrovic", "https://pickaface.net/gallery/avatar/myspacedixson5247bbe83039a.png");
+
+    @Test
+    public void  gameForPlayer() throws Exception {
+	int[] cards =   { 5,1,15,8,9,0,2,3,6,7,10,11,12,13,14,4};
+	Game game = Game.testGame(cards);
+       	game.addPlayer(p0);
+	game.addPlayer(p1);
+
+	game.dealToAll();
+	
+	GameForPlayer gp0 = new GameForPlayer(0,game);
+	GameForPlayer gp1 = new GameForPlayer(1,game);
+
+
+	assertThat(gp0.getMe().getId()).isEqualTo("1234");
+	assertThat(gp1.getMe().getId()).isEqualTo("1235");
+
+	
+
+    }
+
+    @Test
+    public void createTestGame() throws Exception {
+	int[] cards =   { 5,1,15,8,9,0,2,3,6,7,10,11,12,13,14,4};
+	Game game = Game.testGame(cards);
+	game.addPlayer(p0);
+	game.addPlayer(p1);
+
+	game.dealToPlayer(0);
+	assertThat(game.getPlayerCards(0).get(0).getId()).isEqualTo(5);
+	assertThat(game.getPlayerCards(0).get(0).getName()).isEqualTo("Priest");
+	assertThat(game.getPlayerCards(0).get(0).getImage()).isEqualTo("priest.jpg");
+
+	game.dealToPlayer(1);
+	assertThat(game.getPlayerCards(1).get(0).getId()).isEqualTo(1);
+	assertThat(game.getPlayerCards(1).get(0).getName()).isEqualTo("Guard");
+	assertThat(game.getPlayerCards(1).get(0).getImage()).isEqualTo("guard.jpg");
+
+	game.dealToPlayer(1);
+
+	assertThat(game.getPlayerCards(1).get(0).getId()).isEqualTo(1);
+	assertThat(game.getPlayerCards(1).get(0).getName()).isEqualTo("Guard");
+	assertThat(game.getPlayerCards(1).get(0).getImage()).isEqualTo("guard.jpg");
+
+	assertThat(game.getPlayerCards(1).get(1).getId()).isEqualTo(15);
+	assertThat(game.getPlayerCards(1).get(1).getName()).isEqualTo("Princess");
+	assertThat(game.getPlayerCards(1).get(1).getImage()).isEqualTo("princess.jpg");
+	
+       
+	
+    }
+    
+    @Test
+    public void createGame() throws Exception {
+	Game game = new Game();
+	assertThat(game.getPlayers().size()).isEqualTo(0);
+
+        game.addPlayer(p0);
+	assertThat(game.getPlayers().size()).isEqualTo(1);
+
+        game.addPlayer(p1);
+	game.addPlayer(p2);
+	assertThat(game.getPlayers().size()).isEqualTo(3);
+
+	assertThat(game.getDeck().size()).isEqualTo(16);
+	assertThat(game.getPlayerCards(0).size()).isEqualTo(0);
+
+	game.dealToPlayer(0);
+	assertThat(game.getPlayerCards(0).size()).isEqualTo(1);
+	assertThat(game.getDeck().size()).isEqualTo(15);
+	
+    }
+}

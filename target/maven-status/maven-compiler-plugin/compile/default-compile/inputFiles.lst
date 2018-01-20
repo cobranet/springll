@@ -1,0 +1,14 @@
+/home/cobranet/develop/java/ll/src/main/java/ll/controllers/HelloController.java
+/home/cobranet/develop/java/ll/src/main/java/ll/models/Game.java
+/home/cobranet/develop/java/ll/src/main/java/ll/services/GameProposalService.java
+/home/cobranet/develop/java/ll/src/main/java/ll/repositories/PlayerRepo.java
+/home/cobranet/develop/java/ll/src/main/java/ll/models/Card.java
+/home/cobranet/develop/java/ll/src/main/java/ll/controllers/PlayerController.java
+/home/cobranet/develop/java/ll/src/main/java/ll/Application.java
+/home/cobranet/develop/java/ll/src/main/java/ll/controllers/ExceptionResponse.java
+/home/cobranet/develop/java/ll/src/main/java/ll/models/Player.java
+/home/cobranet/develop/java/ll/src/main/java/ll/models/GameProposal.java
+/home/cobranet/develop/java/ll/src/main/java/ll/controllers/GameProposalController.java
+/home/cobranet/develop/java/ll/src/main/java/ll/models/GameForPlayer.java
+/home/cobranet/develop/java/ll/src/main/java/ll/models/GameRecord.java
+/home/cobranet/develop/java/ll/src/main/java/ll/repositories/GameProposalRepo.java
